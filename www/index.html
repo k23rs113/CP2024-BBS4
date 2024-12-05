@@ -91,7 +91,7 @@ function validateAuthInput(email, password, isRegister = false) {
         return false;
     }
     if (isRegister && password.length < 6) {
-        showMessage('パスワードは6文字以上にしてください', 'error');
+        showMessage('パスワードが'+(6-password.length)+'文字足りていません', 'error');
         return false;
     }
     return true;
