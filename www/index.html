@@ -15,6 +15,68 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="www/config.js"></script>
 
+    <style>
+        h1 {
+            color: #010079;
+            font-family: Georgia, "Times New Roman", serif;
+            text-shadow: 0 0 5px white;
+            padding: 0.3em 0.5em;
+            background: -webkit-repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+            background: repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+        }
+        .posts-container h2 {
+            background: #dfefff;
+            box-shadow: 0px 0px 0px 5px #dfefff;
+            border: dashed 2px white;
+            padding: 0.2em 0.5em;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+        body{
+            background-color: lightsteelblue;
+            border: 1px solid steelblue;
+            border-radius: 20px;
+        }
+        .btn-primary{
+            border: 3px solid navy;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+        .btn-secondary {
+            background-color: red;
+            border: 3px solid firebrick;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+        .btn-secondary:hover {
+            background-color: darkred;
+        }
+        .message {
+            font-family: Georgia, "Times New Roman", serif;
+        }
+        .post-form {
+            background-color: #eff7ff;
+            border: 6px solid #bccddb;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+        .post {
+            background-color: #eff7ff;
+            border: 6px solid #bccddb;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+        .auth-container{
+            background-color: #eff7ff;
+            border: 6px solid #bccddb;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+        .user-info {
+            background-color: #eff7ff;
+            border: 6px solid #bccddb;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+        #userEmail {
+            color: #e9bc00;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+    </style>
+
     <script>
 let postsRef;
 let postsListener = null;
