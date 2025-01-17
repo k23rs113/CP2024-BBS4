@@ -148,7 +148,7 @@ function validateContent(content) {
 }
 
 // 認証フォームのバリデーション
-function validateAuthInput(email, password, isRegister = false, nickname) {
+function validateAuthInput(email, password, isRegister = false) {
     if (!email || !email.trim()) {
         showMessage('メールアドレスを入力してください', 'error');
         return false;
@@ -159,10 +159,6 @@ function validateAuthInput(email, password, isRegister = false, nickname) {
     }
     if (isRegister && password.length < 6) {
         showMessage('パスワードが'+(6-password.length)+'文字足りていません', 'error');
-        return false;
-    }
-    if (!nickname || !nickname.trim()) {
-        showMessage('ニックネームを入力してください', 'error');
         return false;
     }
     return true;
@@ -457,13 +453,13 @@ function animateUpdate(postId) {
 }
 
 // ログイン処理
-function login(email, password, nickname) {
-    if (!validateAuthInput(email, password, nickname)) return;
+function login(email, password) {
+    if (!validateAuthInput(email, password)) return;
 
     const button = $('#loginButton');
     button.prop('disabled', true);
 
-    firebase.auth().signInWithEmailAndPasswordAndNickname(email, password, nickname)
+    firebase.auth().signInWithEmailAndPassword(email, password)
         .then(() => {
             showMessage('ログインしました');
             clearAuthForm();
@@ -477,13 +473,13 @@ function login(email, password, nickname) {
 }
 
 // 新規登録処理
-function register(email, password, nickname) {
-    if (!validateAuthInput(email, password, true, nickname)) return;
+function register(email, password) {
+    if (!validateAuthInput(email, password, true)) return;
 
     const button = $('#registerButton');
     button.prop('disabled', true);
 
-    firebase.auth().createUserWithEmailAndPasswordAndNickname(email, password, nickname)
+    firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(() => {
             showMessage('アカウントを作成しました');
             clearAuthForm();
@@ -511,7 +507,6 @@ function logout() {
 function clearAuthForm() {
     $('#loginEmail').val('');
     $('#loginPassword').val('');
-    $('#loginNickname').val('');
 }
 
 // UI更新
@@ -560,15 +555,13 @@ $(function() {
     $('#loginButton').on('click', function() {
         const email = $('#loginEmail').val();
         const password = $('#loginPassword').val();
-        const nickname = $('#loginNickname').val();
-        login(email, password, nickname);
+        login(email, password);
     });
 
     $('#registerButton').on('click', function() {
         const email = $('#loginEmail').val();
         const password = $('#loginPassword').val();
-        const nickname = $('#loginNickname').val();
-        register(email, password, nickname);
+        register(email, password);
     });
 
     $('#logoutButton').on('click', logout);
@@ -608,11 +601,6 @@ window.addEventListener('unload', function() {
                 <input type="password" id="loginPassword" 
                        class="form-control" placeholder="6文字以上">
                 <small class="help-text">※新規登録時は6文字以上</small>
-            </div>
-            <div class="form-group">
-                <label for="loginNickname">ニックネーム</label>
-                <input type="nickname" id="loginNickname" 
-                       class="form-control" placeholder="ニックネームを決めてください">
             </div>
             <div class="button-group">
                 <button id="loginButton" class="btn-primary">ログイン</button>
